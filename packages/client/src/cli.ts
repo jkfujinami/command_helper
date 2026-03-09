@@ -2,7 +2,7 @@
 import { Command } from "commander";
 import * as fs from "node:fs";
 
-import { saveConfig } from "./core/config.js";
+import { getAllConfigPaths, saveConfig } from "./core/config.js";
 import { TerminalUI } from "./core/terminal-ui.js";
 import { BackendClient } from "./core/backend-client.js";
 import { DaemonManager } from "./core/daemon-manager.js";
@@ -33,7 +33,8 @@ program
   .addCommand(
     new Command("set")
       .description("設定値を更新する")
-      .argument("<key>", "設定キー (例: model, ollama.host)")
+      .addHelpText("after", `\n利用可能なキー:\n  ${getAllConfigPaths().join("\n  ")}`)
+      .argument("<key>", "設定キー")
       .argument("<value>", "セットする値")
       .option("--default", "恒久的に保存する")
       .action(async (key, value, options) => {
@@ -62,6 +63,8 @@ program
 
     if (!process.stdin.isTTY) {
       stdinText = fs.readFileSync(0, "utf-8").trim();
+      // パイプ入力を消費後、clack 用に /dev/tty への入力ストリームを確保する
+      ui.restoreTTY();
     }
 
     // プロンプトも標準入力もなければ、対話的に入力を求める

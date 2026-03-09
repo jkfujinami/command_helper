@@ -98,3 +98,19 @@ export function updateConfigValue(path: string, value: any): void {
   }
   fs.writeFileSync(CONFIG_FILE, JSON.stringify(current, null, 2), "utf-8");
 }
+
+/**
+ * 全ての設定可能パスを再帰的に取得する
+ */
+export function getAllConfigPaths(obj: any = DEFAULT_CONFIG, prefix = ""): string[] {
+  let paths: string[] = [];
+  for (const key in obj) {
+    const currentPath = prefix ? `${prefix}.${key}` : key;
+    if (typeof obj[key] === "object" && obj[key] !== null && !Array.isArray(obj[key])) {
+      paths = paths.concat(getAllConfigPaths(obj[key], currentPath));
+    } else {
+      paths.push(currentPath);
+    }
+  }
+  return paths;
+}
