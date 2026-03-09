@@ -1,0 +1,15 @@
+{
+  "name": "cmd-hlp-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "antigravity-client": "github:jkfujinami/antigravity-client"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.5",
+    "tsx": "^4.21.0"
+  }
+}

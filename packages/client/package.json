@@ -1,0 +1,22 @@
+{
+  "name": "@cmd-hlp/client",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/cli.ts",
+    "build": "tsc"
+  },
+  "bin": {
+    "cmd-hlp": "./dist/cli.js"
+  },
+  "dependencies": {
+    "@clack/prompts": "latest",
+    "commander": "latest",
+    "clipboardy": "latest",
+    "tsx": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}

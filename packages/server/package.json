@@ -1,0 +1,18 @@
+{
+  "name": "@cmd-hlp/server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "hono": "latest",
+    "@hono/node-server": "latest",
+    "antigravity-client": "github:jkfujinami/antigravity-client",
+    "tsx": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}
